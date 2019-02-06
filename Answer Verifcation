@@ -1,0 +1,45 @@
+#Creating Word Dictionary
+
+Questions = {
+    "Question 1": "What Day is it? ",
+    "Question 2": "What Color is the sky?",
+    "Question 3": "What Holiday is on October 31st?"
+
+
+} 
+
+Correct = 0
+Incorrect = 0
+
+
+Answer1 = "Monday"
+Answerchoice1 = raw_input(Questions["Question 1"])
+type(Answerchoice1)
+
+   
+if Answerchoice1 == Answer1:
+    Correct += 1
+    print("True")
+    
+else:
+    Incorect += 1
+    print ("False")
+        
+
+Answer2 = "Blue"
+Answerchoice2 = raw_input(Questions["Question 2"])
+type(Answerchoice1)
+
+   
+if Answerchoice2 == Answer2:
+    Correct += 1
+    print("True")
+    
+else:
+    Incorect += 1
+    print ("False")
+
+
+
+print("Your total Correct is: {} ".format(Correct))
+
