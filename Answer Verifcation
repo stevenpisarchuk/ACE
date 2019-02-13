@@ -1,45 +1,45 @@
+import random
+
 #Creating Word Dictionary
 
 Questions = {
-    "Question 1": "What Day is it? ",
-    "Question 2": "What Color is the sky?",
-    "Question 3": "What Holiday is on October 31st?"
+    "What day is it?": "Monday",
+    "What Color is the sky?": "Blue",
+    "What Color is grass?": "Green"
 
 
 } 
 
-Correct = 0
-Incorrect = 0
+#Increments correct and Incorrect Answers
 
+print "How many questions would you like? "
+questionamount = input()
 
-Answer1 = "Monday"
-Answerchoice1 = raw_input(Questions["Question 1"])
-type(Answerchoice1)
+def questiondisplay(questionamount):
+    Correct = 0 
+    Incorrect = 0
 
-   
-if Answerchoice1 == Answer1:
-    Correct += 1
-    print("True")
     
-else:
-    Incorect += 1
-    print ("False")
+    i = 0
+    while i < questionamount:
+        thequestion = random.choice(list(Questions)) #generates a random question
+       
+        theanswer = Questions[thequestion] #stores the answer to the corresponding question
         
+        print thequestion #prints the random question
+        answerchoice = raw_input() #lets the user input an answer
+        answerchoice
+        if answerchoice == theanswer:
+            Correct += 1
+            i = i + 1
+        else:
+            Incorrect +=1
+            i = i + 1
 
-Answer2 = "Blue"
-Answerchoice2 = raw_input(Questions["Question 2"])
-type(Answerchoice1)
-
-   
-if Answerchoice2 == Answer2:
-    Correct += 1
-    print("True")
+    print("Your total Correct is: {} ".format(Correct)) 
+    print("Your total Incorrect is: {} ".format(Incorrect))
     
-else:
-    Incorect += 1
-    print ("False")
+"""need to figure out how to make sure a question isn't duplicated if the user selects less questions than the
+    dictionary has"""
 
-
-
-print("Your total Correct is: {} ".format(Correct))
-
+questiondisplay(questionamount)
