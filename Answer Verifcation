@@ -1,45 +1,104 @@
+import random
+
 #Creating Word Dictionary
 
 Questions = {
-    "Question 1": "What Day is it? ",
-    "Question 2": "What Color is the sky?",
-    "Question 3": "What Holiday is on October 31st?"
+    "What day is it?": "Monday",
+    "What Color is the sky?": "Blue",
+    "What Color is grass?": "Green"
 
 
 } 
 
-Correct = 0
-Incorrect = 0
+#Increments correct and Incorrect Answers
 
 
-Answer1 = "Monday"
-Answerchoice1 = raw_input(Questions["Question 1"])
-type(Answerchoice1)
+def menudisplay():
+    print "Select an Option from the Menu"   
+    print "1: Generate Quiz"
+    print "2: Play Again"
+    print "3: New Student"
+    print "4: Statistics"
+    print "5: Quit"
 
-   
-if Answerchoice1 == Answer1:
-    Correct += 1
-    print("True")
+
+
+#print "How many questions would you like?"
+
+
+
+def questiondisplay(questionamount):
+    Correct = 0 
+    Incorrect = 0
+
     
-else:
-    Incorect += 1
-    print ("False")
+    i = 0
+    while i < questionamount:
+        thequestion = random.choice(list(Questions)) #generates a random question
+       
+        theanswer = Questions[thequestion] #stores the answer to the corresponding question
+        
+        print thequestion #prints the random question
+        answerchoice = raw_input() #lets the user input an answer
+        answerchoice
+        if answerchoice == theanswer:
+            Correct += 1
+            i = i + 1
+        else:
+            Incorrect +=1
+            i = i + 1
+
+    print("Your total Correct is: {} ".format(Correct)) 
+    print("Your total Incorrect is: {} ".format(Incorrect))
+
+def menu(choice):
+
+    if choice == 1:
+        playername = raw_input("Please enter your name: ")
+        print(playername)
+        print "How Many Questions Would you Like?"
+        questionamount = input()
+        questiondisplay(questionamount)
+        
+    if choice == 2:
+        print "Playing Again..."
+        print "How Many Questions Would you like? "
+
+
+        
+    if choice == 3:
+        newplayer = raw_input("Please enter your name: ")
+        print "How Many Questions Would you like? "
+
         
 
-Answer2 = "Blue"
-Answerchoice2 = raw_input(Questions["Question 2"])
-type(Answerchoice1)
+    if choice == 4:
+         print("Your total Correct is: {} ".format(Correct)) 
+         print("Your total Incorrect is: {} ".format(Incorrect))
+    if choice == 5:
+        exit()
 
-   
-if Answerchoice2 == Answer2:
-    Correct += 1
-    print("True")
+#Need to have counter keep track of a player's score if they decide to play again
+#Need to figure out how to associate scores with players
+#Need to have Choice 4 work correctly
+
+
+
+"""need to figure out how to make sure a question isn't duplicated if the user selects less questions than the
+    dictionary has"""
+
+
+"""Having 2 random inputs before the menu is prompted"""
+
+
+if __name__ == "__main__":
+    menudisplay()
+    choice = input("Enter an Option: ")
+    menu(choice)
     
-else:
-    Incorect += 1
-    print ("False")
-
-
-
-print("Your total Correct is: {} ".format(Correct))
-
+    while choice != 5:
+        menudisplay()
+        choice = input("Enter an Option: ")
+        menu(choice)
+        questionamount = input()
+        questiondisplay(questionamount)
