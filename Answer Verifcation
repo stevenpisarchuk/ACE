@@ -10,6 +10,8 @@ Questions = {
 
 } 
 
+standings = {}
+
 #Increments correct and Incorrect Answers
 
 
@@ -19,8 +21,8 @@ def menudisplay():
     print "2: Play Again"
     print "3: New Student"
     print "4: Statistics"
-    print "5: Quit"
-
+    print "5: Quit" #want to make this print the leaderboard 
+    
 
 
 #print "How many questions would you like?"
@@ -28,6 +30,9 @@ def menudisplay():
 
 
 def questiondisplay(questionamount):
+    global Correct
+    global Incorrect
+    
     Correct = 0 
     Incorrect = 0
 
@@ -51,11 +56,14 @@ def questiondisplay(questionamount):
     print("Your total Correct is: {} ".format(Correct)) 
     print("Your total Incorrect is: {} ".format(Incorrect))
 
+def addStandings(playername, Correct):
+        standings.update({playername: Correct})
+
 def menu(choice):
 
     if choice == 1:
-        playername = raw_input("Please enter your name: ")
-        print(playername)
+        #playername = raw_input("Please enter your name: ")
+        #print(playername)
         print "How Many Questions Would you Like?"
         questionamount = input()
         questiondisplay(questionamount)
@@ -67,38 +75,39 @@ def menu(choice):
 
         
     if choice == 3:
-        newplayer = raw_input("Please enter your name: ")
+        #newplayer = raw_input("Please enter your name: ")
         print "How Many Questions Would you like? "
 
         
 
     if choice == 4:
-         print("Your total Correct is: {} ".format(Correct)) 
-         print("Your total Incorrect is: {} ".format(Incorrect))
+         print standings
+         exit()
     if choice == 5:
         exit()
-
-#Need to have counter keep track of a player's score if they decide to play again
-#Need to figure out how to associate scores with players
-#Need to have Choice 4 work correctly
-
 
 
 """need to figure out how to make sure a question isn't duplicated if the user selects less questions than the
     dictionary has"""
 
 
-"""Having 2 random inputs before the menu is prompted"""
-
 
 if __name__ == "__main__":
     menudisplay()
     choice = input("Enter an Option: ")
+    if choice == 1 or choice == 2 or choice == 3:
+        playername = raw_input("Please enter your name: ")
     menu(choice)
+    addStandings(playername, Correct)
     
-    while choice != 5:
+    
+    while choice != 5 and choice != 4:
         menudisplay()
         choice = input("Enter an Option: ")
+        if choice == 1 or choice == 3:
+            playername = raw_input("Please enter your name: ") 
         menu(choice)
         questionamount = input()
         questiondisplay(questionamount)
+        addStandings(playername, Correct)
+      
