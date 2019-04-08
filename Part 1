@@ -1,0 +1,7 @@
+Questions = open("Practice.txt", 'r')
+Answers = open("Practice2.txt", 'w')
+
+for line in Questions:
+    Answers.write(line)
+
+Questions.close()
