@@ -1,4 +1,5 @@
 import random
+import operator
 
 #Creating Word Dictionary
 
@@ -58,12 +59,11 @@ def questiondisplay(questionamount):
 
 def addStandings(playername, Correct):
         standings.update({playername: Correct})
+        sorted_d = sorted(standings.items(),key=operator.itemgetter(1))
 
 def menu(choice):
 
     if choice == 1:
-        #playername = raw_input("Please enter your name: ")
-        #print(playername)
         print "How Many Questions Would you Like?"
         questionamount = input()
         questiondisplay(questionamount)
@@ -75,7 +75,6 @@ def menu(choice):
 
         
     if choice == 3:
-        #newplayer = raw_input("Please enter your name: ")
         print "How Many Questions Would you like? "
 
         
@@ -85,11 +84,6 @@ def menu(choice):
          exit()
     if choice == 5:
         exit()
-
-
-"""need to figure out how to make sure a question isn't duplicated if the user selects less questions than the
-    dictionary has"""
-
 
 
 if __name__ == "__main__":
@@ -110,4 +104,5 @@ if __name__ == "__main__":
         questionamount = input()
         questiondisplay(questionamount)
         addStandings(playername, Correct)
+      
       
