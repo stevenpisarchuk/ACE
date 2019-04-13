@@ -1,0 +1,111 @@
+import random
+import operator
+
+#Creating Word Dictionary
+
+Questions = {} 
+
+with open("SampleQuestions1.txt", 'r') as f:
+    for line in f:
+        items = line.strip('\n').split(',')
+        key, values = items[0], items[1]
+        Questions[key] = values
+
+standings = {}
+
+#Increments correct and Incorrect Answers
+
+
+def menudisplay():
+    print "Select an Option from the Menu"   
+    print "1: Generate Quiz"
+    print "2: Play Again"
+    print "3: New Student"
+    print "4: Statistics"
+    print "5: Quit" 
+    
+
+
+#print "How many questions would you like?"
+
+
+
+def questiondisplay(questionamount):
+    global Correct
+    global Incorrect
+    global Total
+    
+    Correct = 0 
+    Incorrect = 0
+    Total = 0.0
+
+    
+    i = 0
+    while i < questionamount:
+        thequestion = random.choice(list(Questions)) #generates a random question
+
+        theanswer = Questions[thequestion] #stores the answer to the corresponding question
+        
+        print thequestion #prints the random question
+        answerchoice = raw_input() #lets the user input an answer
+        answerchoice
+        if answerchoice == theanswer:
+            Correct += 1
+            Total+=1
+            i = i + 1
+        else:
+            Incorrect +=1
+            Total+=1
+            i = i + 1
+
+def addStandings(playername, Correct,Total):
+
+        pct = round(100.0 * (Correct / Total),2)
+        standings.update({playername: pct,}),
+        sorted_d = sorted(standings.items(),key=operator.itemgetter(1))
+
+def menu(choice):
+
+    if choice == 1:
+        print "How Many Questions Would you Like?"
+        questionamount = input()
+        questiondisplay(questionamount)
+        
+    if choice == 2:
+        print "Playing Again..."
+        print "How Many Questions Would you like? "
+
+
+        
+    if choice == 3:
+        print "How Many Questions Would you like? "
+
+        
+
+    if choice == 4:
+         print "Standings by Percent Correct:"
+         print standings
+         exit()
+    if choice == 5:
+        exit()
+
+
+if __name__ == "__main__":
+    menudisplay()
+    choice = input("Enter an Option: ")
+    if choice == 1 or choice == 2 or choice == 3:
+        playername = raw_input("Please enter your name: ")
+    menu(choice)
+    addStandings(playername, Correct,Total)
+    
+    
+    while choice != 5 and choice != 4:
+        menudisplay()
+        choice = input("Enter an Option: ")
+        if choice == 1 or choice == 3:
+            playername = raw_input("Please enter your name: ") 
+        menu(choice)
+        questionamount = input()
+        questiondisplay(questionamount)
+        addStandings(playername, Correct,Total)
+      
