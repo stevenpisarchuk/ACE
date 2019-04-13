@@ -1,0 +1,21 @@
+A list is mutable in Python. True or False?; True
+What are the numeric data types in Python?; int, long, float, and complex
+What does alex.forward(-100) mean in Turtle Programming when you want the turtle “Alex” to be moved?"; alex moves backwards by 100 units
+The complex data type supports typical numerical operations. True or False?; False
+What are the sequence data types?; string, list, and tuple
+A string is an immutable data type in Python. True or False?; True
+In turtle programming, turning 30 to the left will leave you facing in the same direction as turning 330 to the right? True or False?; True
+If you have a turtle named alex, how would you make him go at the slowest speed?; alex.speed(1)
+What turtle method leaves an impression of the turtle methods?; stamp
+In python 3, the statement - print Hello, World! - will run without any error? True or False?; False
+What kind of typing does Python support?; dynamic
+What would be the output of int(6.3)?; 6
+Which 2 functions can be used to create a range of integers?; range() and xrange()
+What would be the printed outputs for the following program?- for i in range(20,14,-2): print i; 20,18,16
+Both mutable and immutable objects can be changed in the called function in python? True or False?; False
+If a module is executed directly, the value of the global variable __name__ will be “__main__”? True or False?; True
+Arguments with default values can appear at the start of the arguments list of a function? True or False?; False
+What will the following produce? >>> 1.1 * 3.0 == 3.3 . True or False?; False
+What is the name of the set of recommendations about how to write readable Python programs?; PEP8
+What are the modes in which we can run python code?; normal and interpreted mode
+Write an example of a Fibonacci series?; 1,2,3,5,8,11
