@@ -1,0 +1,131 @@
+import random
+import operator
+import json
+from Tkinter import *
+import Tkinter, Tkconstants, tkFileDialog
+ 
+root = Tk()
+root.title("ACE: Automated Class Exams")
+root.geometry("500x500+300+300")
+
+Questions = {} 
+
+def fillquestions():
+	root.filename = tkFileDialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("txt files","*.txt"),("all files","*.*")))
+	print (root.filename)
+	#Creating Word Dictionary
+	with open(root.filename, 'r') as f:
+	    for line in f:
+	        thequestion, theanswer = line.strip().split(';',1)
+	        Questions[thequestion] = theanswer.strip() 
+ 
+fillquestions()
+
+def Help():
+	popup = Tk()
+	popup.wm_title("Help")
+	label = Label(popup, text = "Follow the prompts on the window.\nPlease enter all case-sensitive responses into the command prompt.")
+	label.pack(side="top", fill="x", pady=10)
+	B1 = Button(popup, text="Okay", bg = 'green', command = popup.destroy).pack()
+	popup.mainloop()
+
+message = StringVar()
+message.set('Please select an option')
+firstText = Message(root, textvariable = message, font=('times', '25'), width = 480)
+
+# create a menu
+menu = Menu(root)
+root.config(menu=menu)
+
+filemenu = Menu(menu)
+menu.add_cascade(label="File", menu=filemenu)
+filemenu.add_command(label="Open New File", command=fillquestions)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=root.destroy)
+
+helpmenu = Menu(menu)
+menu.add_cascade(label="Help", menu=helpmenu)
+helpmenu.add_command(label="About...", command=Help)
+
+firstText.pack()
+
+
+standings = {}
+
+def questiondisplay(questionamount):
+    global Correct
+    global Incorrect
+    global Total
+    
+    Correct = 0 
+    Incorrect = 0
+    Total = 0.0
+
+    
+    i = 0
+    while i < questionamount:
+        thequestion = random.choice(list(Questions)) #generates a random question
+
+        theanswer = Questions[thequestion] #stores the answer to the corresponding question
+        
+        message.set(thequestion) #prints the random question
+        answerchoice = raw_input() #lets the user input an answer
+        answerchoice
+        if answerchoice == theanswer:
+            Correct += 1
+            Total+=1
+            i = i + 1
+        else:
+            Incorrect +=1
+            Total+=1
+            i = i + 1
+
+def addStandings(playername, Correct,Total):
+        pct = round(100.0 * (Correct / Total),2)
+        standings.update({playername: pct,}),
+        sorted_d = sorted(standings.items(),key=operator.itemgetter(1))
+
+
+def menu(choice):
+    if choice == 1:
+        message.set('How many questions would you like?')
+        questionamount = input()
+        questiondisplay(questionamount)
+        
+    if choice == 2:
+        message.set("Playing Again...\nHow Many Questions Would you like? ")
+
+        
+    if choice == 3:
+        message.set("How Many Questions Would you like?")
+
+        
+    if choice == 4:
+	message.set("Percent Correct:")
+	secondText = Label(root, text = json.dumps(standings, indent=4, sort_keys = True), font=('times', '25')).pack()
+	B2 = Button(root, text="Okay", command = root.destroy).pack()
+         
+    if choice == 5:
+        exit()
+
+
+if __name__ == "__main__":
+    message.set("Select an Option from the Menu\n1: Generate Quiz\n2: Play Again\n3: New Student\n4: Statistics\n5: Quit")
+    choice = input()
+    if choice == 1 or choice == 2 or choice == 3:
+        message.set("Please enter your name")
+	playername = raw_input()
+    menu(choice)
+    addStandings(playername, Correct,Total)
+    
+    
+    while choice != 5 and choice != 4:
+        message.set("Select an Option from the Menu\n1: Generate Quiz\n2: Play Again\n3: New Student\n4: Statistics\n5: Quit")
+        choice = input()
+        if choice == 1 or choice == 3:
+		message.set("Please enter your name")           
+		playername = raw_input() 
+        menu(choice)
+        questionamount = input()
+        questiondisplay(questionamount)
+        addStandings(playername, Correct,Total)
